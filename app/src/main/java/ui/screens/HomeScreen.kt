@@ -3,19 +3,18 @@ package com.example.expressoesnumericas.ui.screens
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.example.expressoesnumericas.ui.components.AppBodyText
+import com.example.expressoesnumericas.ui.components.AppButton
+import com.example.expressoesnumericas.ui.components.AppCard
+import com.example.expressoesnumericas.ui.components.AppLogo
+import com.example.expressoesnumericas.ui.components.AppTitleText
+import com.example.expressoesnumericas.ui.theme.Dimens
 import ui.theme.ExpressoesNumericasTheme
+import com.example.expressoesnumericas.logic.gerarExpressaoNumerica
 
 @Composable
 fun HomeScreen() {
@@ -24,72 +23,88 @@ fun HomeScreen() {
         mutableStateOf("")
     }
 
-
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        Text(
-            text = "Neotica",
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 80.dp)
+        // Logo
+        AppLogo(
+            modifier = Modifier.align(Alignment.TopCenter)
         )
 
+        // Textos iniciais
+        if (expressaoGerada.isEmpty()) {
 
+            AppTitleText(
+                text = "Treine seus cálculos!",
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(
+                        top = Dimens.Home.TitleTop,
+                        start = Dimens.Home.HorizontalPadding,
+                        end = Dimens.Home.HorizontalPadding
+                    )
+            )
+
+            AppBodyText(
+                text = "O botão abaixo cria uma expressão\npara você resolver!",
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(
+                        top = Dimens.Home.DescriptionTop,
+                        start = Dimens.Home.HorizontalPadding,
+                        end = Dimens.Home.HorizontalPadding
+                    )
+            )
+        }
+
+        // Card da expressão
         if (expressaoGerada.isNotEmpty()) {
 
-            Card(
+            AppCard(
+                expression = expressaoGerada,
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .padding(24.dp)
-            ) {
-
-                Text(
-                    text = expressaoGerada,
-                    modifier = Modifier.padding(24.dp)
-                )
-
-            }
-
-
-            Button(
-                onClick = { },
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 80.dp)
-            ) {
-
-                Text("Resolver Expressão")
-
-            }
-
-        } else {
-
-            Button(
-                onClick = {
-
-                    expressaoGerada = "25 + (40 - 12)"
-
-                },
-                modifier = Modifier
-                    .align(Alignment.Center)
-            ) {
-
-                Text("Gerar Expressão")
-
-            }
+                    .padding(Dimens.Card.Padding)
+            )
 
         }
 
-    }
+        // Botão principal
+        AppButton(
+            text = if (expressaoGerada.isEmpty()) {
+                "Gerar Expressão"
+            } else {
+                "Resolver Expressão"
+            },
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = Dimens.Home.ButtonBottom),
+            onClick = {
 
+                if (expressaoGerada.isEmpty()) {
+
+                    expressaoGerada = gerarExpressaoNumerica()
+
+                } else {
+
+                    // Aqui futuramente chamaremos o resolvedor
+
+                }
+
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
+
     ExpressoesNumericasTheme {
+
         HomeScreen()
+
     }
+
 }

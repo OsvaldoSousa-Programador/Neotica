@@ -9,17 +9,22 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.expressoesnumericas.ui.theme.AppTypography
+import com.example.expressoesnumericas.ui.theme.NoeBlue
+import com.example.expressoesnumericas.ui.theme.NoeGreen
+import com.example.expressoesnumericas.ui.theme.NoeOrange
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = NoeBlue,
+    secondary = NoeGreen,
+    tertiary = NoeOrange
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = NoeBlue,
+    secondary = NoeGreen,
+    tertiary = NoeOrange
+)
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -30,7 +35,7 @@ private val LightColorScheme = lightColorScheme(
     onBackground = Color(0xFF1C1B1F),
     onSurface = Color(0xFF1C1B1F),
     */
-)
+
 
 @Composable
 fun ExpressoesNumericasTheme(
@@ -51,7 +56,7 @@ fun ExpressoesNumericasTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = AppTypography,
         content = content
     )
 }
