@@ -18,7 +18,6 @@ fun AppLogo(
         painter = painterResource(id = R.drawable.logo_noetica),
         contentDescription = "Logo Noetica",
         modifier = modifier
-            .padding(top = Dimens.Home.LogoTop)
             .height(Dimens.Size.LogoHeight),
         contentScale = ContentScale.Fit
     )

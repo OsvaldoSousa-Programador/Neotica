@@ -20,10 +20,12 @@ object Dimens {
      * Tamanhos dos componentes
      */
     object Size {
-        val LogoHeight = 60.dp
+
+        val LogoWidth = 250.dp
+        val LogoHeight = 80.dp
 
         val ButtonWidth = 305.dp
-        val ButtonHeight = 60.dp
+        val ButtonHeight = 68.dp
     }
 
     /**
@@ -35,7 +37,7 @@ object Dimens {
      * Card
      */
     object Card {
-        val Padding = 24.dp
+        val Padding = 16.dp
     }
 
     object Home {

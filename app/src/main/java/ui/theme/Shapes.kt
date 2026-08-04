@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.dp
 
 object AppShapes {
 
-    private val Small = RoundedCornerShape(8.dp)
+    private val Small = RoundedCornerShape(4.dp)
 
     private val Medium = RoundedCornerShape(12.dp)
 
@@ -15,7 +15,7 @@ object AppShapes {
 
     val button = Large
 
-    val card = Large
+    val card = Small
 
     val dialog = ExtraLarge
 

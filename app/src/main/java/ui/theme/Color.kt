@@ -8,6 +8,7 @@ val NoeGreen = Color(0xFF91D529)
 val NoeOrange = Color(0xFFFDB228)
 val NoeRed = Color(0xFFFF4C4B)
 val NoePurple = Color(0xFF594083)
+val NeoBlueCard = Color(0xFFC9F3F3)
 
 // Cores neutras
 val White = Color(0xFFFFFFFF)
