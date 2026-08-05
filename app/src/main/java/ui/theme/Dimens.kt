@@ -26,37 +26,48 @@ object Dimens {
 
         val ButtonWidth = 305.dp
         val ButtonHeight = 68.dp
+
     }
 
     /**
-     * Espaçamentos específicos da Home
+     * Home
      */
+    object Home {
 
+        // Distância do topo da tela até a logo
+        val LogoTop = 169.dp
+
+        // Estado inicial
+        val LogoToTitle = 84.dp
+        val TitleToDescription = 3.dp
+        val DescriptionToButton = 14.dp
+
+        // Estado com expressão
+        val LogoToCard = 64.dp
+        val CardToButton = 86.dp
+
+        // Padding horizontal padrão
+        val HorizontalPadding = 24.dp
+
+    }
 
     /**
      * Card
      */
     object Card {
+
         val Padding = 16.dp
-    }
+        val HorizontalMargin = 40.dp
 
-    object Home {
-
-        val LogoTop = 80.dp
-
-        val TitleTop = 180.dp
-
-        val DescriptionTop = 220.dp
-
-        val ButtonBottom = 120.dp
-
-        val HorizontalPadding = 24.dp
     }
 
     /**
      * Expressão
      */
     object Expression {
+
         val Padding = 24.dp
+
     }
+
 }
