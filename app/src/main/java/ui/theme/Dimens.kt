@@ -35,16 +35,17 @@ object Dimens {
     object Home {
 
         // Distância do topo da tela até a logo
-        val LogoTop = 169.dp
+        val LogoTop = 139.dp
 
         // Estado inicial
         val LogoToTitle = 84.dp
         val TitleToDescription = 3.dp
-        val DescriptionToButton = 14.dp
+        val DescriptionToButton = 19.dp
 
         // Estado com expressão
-        val LogoToCard = 64.dp
-        val CardToButton = 86.dp
+        val LogoToCard = 54.dp
+        val CardToButton = 26.dp
+        val BetweenButtons = 10.dp
 
         // Padding horizontal padrão
         val HorizontalPadding = 24.dp

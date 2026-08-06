@@ -1,3 +1,5 @@
+package com.example.expressoesnumericas.logic
+
 
 data class Agrupador(
     val abertura: Char,
@@ -196,4 +198,32 @@ fun limparNumeroNegativo(numero: String): Int {
         .replace("(", "")
         .replace(")", "")
         .toInt()
+}
+
+fun gerarResolucaoFormatada(resolucao: ResolucaoCompleta): String {
+
+    if (resolucao.passos.isEmpty()) {
+        return resolucao.resultadoFinal.toString()
+    }
+
+    val linhas = mutableListOf<String>()
+
+    // Primeira expressão
+    linhas.add(
+        formatarExpressaoParaMostrar(
+            resolucao.passos.first().expressaoAntes
+        )
+    )
+
+    // Cada passo da resolução
+    resolucao.passos.forEach { passo ->
+
+        linhas.add(
+            "= ${formatarExpressaoParaMostrar(passo.expressaoDepois)}"
+        )
+
+    }
+
+    return linhas.joinToString("\n\n")
+
 }

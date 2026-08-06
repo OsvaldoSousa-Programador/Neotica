@@ -22,7 +22,7 @@ val AppTypography = Typography(
     // Expressão matemática exibida no Card
     headlineMedium = TextStyle(
         fontFamily = Inter,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = 18.sp,
         letterSpacing = 0.sp
     ),
@@ -38,7 +38,7 @@ val AppTypography = Typography(
     // Texto de apoio
     bodyMedium = TextStyle(
         fontFamily = Inter,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         letterSpacing = 0.sp
     ),
