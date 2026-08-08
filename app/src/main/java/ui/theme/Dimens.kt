@@ -52,6 +52,26 @@ object Dimens {
 
     }
 
+    object TopBar {
+
+        val Height = 56.dp
+
+        val HorizontalPadding = 16.dp
+
+        val TouchTarget = 48.dp
+
+        val IconSize = 24.dp
+
+        val IconSpacing = 8.dp
+
+        val MenuOffsetX = (-12).dp
+
+        val MenuOffsetY = 56.dp
+
+        val MenuWidth = 190.dp
+
+    }
+
     /**
      * Card
      */
