@@ -8,6 +8,7 @@ import com.example.expressoesnumericas.ui.screens.HomeScreen
 import com.example.expressoesnumericas.ui.screens.PrivacyScreen
 import com.example.expressoesnumericas.ui.screens.TermsScreen
 import com.example.expressoesnumericas.ui.theme.ExpressoesNumericasTheme
+import android.util.Log
 
 class MainActivity : ComponentActivity() {
 
@@ -31,9 +32,11 @@ class MainActivity : ComponentActivity() {
 
                         HomeScreen(
                             onTermsClick = {
+                                Log.d("NOHETICA", "Clique em Termos")
                                 telaAtual = "terms"
                             },
                             onPrivacyClick = {
+                                Log.d("NOHETICA", "Clique em Privacidade")
                                 telaAtual = "privacy"
                             }
                         )
