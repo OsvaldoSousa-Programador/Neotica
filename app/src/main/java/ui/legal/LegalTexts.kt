@@ -77,15 +77,15 @@ Ao utilizar a Nohetica, o usuário declara estar ciente desta Política de Priva
 
 
     const val TermsOfUse = """
-TERMOS DE USO DA NOHETICA
+TERMOS DE USO NOHETICA
 
 Última atualização: 05 de agosto de 2026
 
-Bem-vindo à Nohetica!
+Bem-vindo a Nohetica!
 
 Estes Termos de Uso estabelecem as condições para utilização do aplicativo Nohetica. Ao utilizar o aplicativo, você concorda com os termos descritos neste documento.
 
-1. SOBRE A NOHETICA
+1. SOBRE NOHETICA
 
 A Nohetica é um aplicativo educacional desenvolvido para auxiliar estudantes na geração e resolução de expressões matemáticas. O aplicativo tem finalidade exclusivamente educativa e de apoio ao aprendizado.
 
