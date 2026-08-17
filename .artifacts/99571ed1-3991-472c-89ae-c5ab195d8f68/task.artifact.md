@@ -1,0 +1,7 @@
+- [x] Atualizar Application ID e Namespace no `build.gradle.kts`
+- [x] Criar nova estrutura de pastas `com/jumirandapisousa/nohetica/app`
+- [x] Mover todos os arquivos `.kt` para os novos pacotes
+- [x] Atualizar declarações de `package` e `import` em todos os arquivos
+- [x] Atualizar `AndroidManifest.xml`
+- [x] Realizar Gradle Sync e Limpar Projeto
+- [x] Testar execução do app
