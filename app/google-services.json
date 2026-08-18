@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "346223013491",
+    "project_id": "nohetica-c4577",
+    "storage_bucket": "nohetica-c4577.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346223013491:android:fdc93e15b0330f2f028406",
+        "android_client_info": {
+          "package_name": "com.jumirandapisousa.nohetica.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtah69YXBC4SnhssbJz55i9A6KGiNgBhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

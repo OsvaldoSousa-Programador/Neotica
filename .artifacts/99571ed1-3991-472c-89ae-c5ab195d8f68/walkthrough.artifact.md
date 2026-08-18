@@ -1,28 +1,29 @@
-# Walkthrough - Preparação Final para a Play Store
+# Walkthrough - Atualização de Termos e Privacidade (Nohética)
 
-Concluímos os ajustes técnicos essenciais para que o **Nohética** seja aceito na Play Store com um padrão de qualidade profissional.
+Concluímos a revisão completa dos textos legais do aplicativo, garantindo que o **Nohética** esteja em total conformidade com as exigências de transparência da Play Store e reflita sua nova identidade visual.
 
 ## Alterações Realizadas
 
-### Limpeza de Código (Ganhando Tempo)
-- **Remoção de Logs**: Eliminamos todas as chamadas de `Log.d` na [MainActivity.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/MainActivity.kt). Isso garante que o app não "suje" o sistema do usuário e protege a lógica interna.
-- **Permissões**: Verificamos o [AndroidManifest.xml](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/AndroidManifest.xml) e confirmamos que o app não solicita nenhuma permissão desnecessária, o que acelera a aprovação do Google.
+### Padronização da Marca
+- **Grafia Correta**: Substituímos todas as menções a "Nohetica" pela grafia oficial: "**Nohética**" (com acento).
+- **Datas de Revisão**: Atualizamos a data de última modificação em todas as telas para **17 de agosto de 2026**.
 
-### Estabilidade do AppMenu
-- Realizamos um build de teste completo que confirmou que a estrutura do [AppMenu.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppMenu.kt) está 100% funcional.
+### Transparência e Analytics
+- **Seção de Dados**: Incluímos parágrafos detalhados na **Política de Privacidade** sobre o uso do Firebase Analytics.
+- **Detalhamento**: Explicamos ao usuário que coletamos eventos anônimos (como geração de expressões e uso de acessibilidade) apenas para melhorar o aplicativo educacional, sem coletar nomes ou e-mails.
+- **Permissões**: Justificamos o uso das permissões de Internet para o envio dessas métricas de melhoria.
 
-## Check-list de Ganhos de Tempo
+### Refinamento Jurídico
+- **Isenção de Responsabilidade**: Reforçamos que o app é uma ferramenta de apoio e que os alunos devem sempre conferir os resultados em contextos de provas oficiais.
+- **E-mail de Contato**: Mantivemos o e-mail de suporte para garantir que os usuários tenham um canal direto com os desenvolvedores.
 
-- [x] **Pacote Profissional**: `com.jumirandapisousa.nohetica.app` configurado.
-- [x] **Sem Logs**: Código limpo de rastros de desenvolvimento.
-- [x] **Build de Sucesso**: Compilação passando sem erros técnicos.
+## O que testar
+
+1.  Abra o menu lateral (três pontinhos).
+2.  Toque em **Termos de Uso**: Verifique se o nome "Nohética" está correto e se a data no topo é a de hoje.
+3.  Toque em **Política de Privacidade**: Verifique o novo item "3. INFORMAÇÕES DE USO E ANALYTICS" que detalha o compromisso com a privacidade e o uso do Firebase.
 
 ---
 
-> [!CAUTION]
-> **Ação Necessária**: Para que os erros visuais (linhas vermelhas) sumam do seu Android Studio, lembre-se de executar **File > Invalidate Caches > Invalidate and Restart**. Este é um passo comum após grandes refatorações de pacote.
-
-## Próximos Passos
-
-1.  **Assinatura**: Agora você pode prosseguir com a criação da chave de assinatura (Keystore) para gerar o arquivo `.aab`.
-2.  **Ícone**: Se já tiverem a logo final, este é o momento de gerar os ícones adaptativos.
+> [!IMPORTANT]
+> Ter termos de privacidade claros e atualizados é um dos principais critérios que o Google avalia durante a revisão do aplicativo. O **Nohética** agora passa uma imagem de seriedade e confiança.

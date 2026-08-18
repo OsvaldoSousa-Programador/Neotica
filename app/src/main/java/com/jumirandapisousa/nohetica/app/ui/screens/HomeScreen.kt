@@ -19,9 +19,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
+import android.content.Intent
+import android.widget.Toast
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ContentCopy
+import androidx.compose.material.icons.rounded.Share
+import androidx.compose.material.icons.rounded.EmojiEvents
+import androidx.compose.foundation.layout.Row
+import com.jumirandapisousa.nohetica.app.ui.components.AppActionButton
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import android.content.Context
+import androidx.compose.ui.platform.LocalContext
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.logEvent
 
 import com.jumirandapisousa.nohetica.app.R
 import com.jumirandapisousa.nohetica.app.logic.gerarExpressaoNumerica
@@ -51,6 +65,12 @@ fun HomeScreen(
     fontScale: Float = 1f,
     onFontScaleChange: (Float) -> Unit = {}
 ) {
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
+
+    val analytics = remember {
+        FirebaseAnalytics.getInstance(context)
+    }
 
     var expressaoGerada by remember {
         mutableStateOf("")
@@ -166,6 +186,13 @@ fun HomeScreen(
                         expressaoGerada =
                             gerarExpressaoNumerica()
 
+                        android.util.Log.d(
+                            "NOHETICA_ANALYTICS",
+                            "expression_generated chamado"
+                        )
+
+                        analytics.logEvent("expression_generated", null)
+
                     }
 
                 )
@@ -204,6 +231,60 @@ fun HomeScreen(
                     )
                 )
 
+                // TRIO DE BOTÕES (COPIAR, DESAFIAR, COMPARTILHAR) - ESTADO 2
+                Row(
+                    modifier = Modifier
+                        .width(Dimens.Size.ButtonWidth * 0.92f), // 92% da largura do botão principal
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    AppActionButton(
+                        text = "Copiar",
+                        icon = Icons.Rounded.ContentCopy,
+                        onClick = {
+                            clipboardManager.setText(AnnotatedString(expressaoGerada))
+                            Toast.makeText(context, "Pergunta copiada!", Toast.LENGTH_SHORT).show()
+                        },
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    AppActionButton(
+                        text = "Desafiar",
+                        icon = Icons.Rounded.EmojiEvents,
+                        onClick = {
+                            val challengeMessage = "Você consegue resolver essa?\n\n$expressaoGerada\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, challengeMessage)
+                                type = "text/plain"
+                            }
+                            val shareIntent = Intent.createChooser(sendIntent, null)
+                            context.startActivity(shareIntent)
+                        },
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    AppActionButton(
+                        text = "",
+                        icon = Icons.Rounded.Share,
+                        onClick = {
+                            val shareMessage = "Duvido você resolver essa expressão! 🧠\n\n$expressaoGerada\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, shareMessage)
+                                type = "text/plain"
+                            }
+                            val shareIntent = Intent.createChooser(sendIntent, null)
+                            context.startActivity(shareIntent)
+                        }
+                    )
+                }
+
+                Spacer(
+                    modifier = Modifier.height(
+                        Dimens.Home.BetweenButtons
+                    )
+                )
 
                 AppButton(
 
@@ -224,6 +305,9 @@ fun HomeScreen(
                             gerarResolucaoFormatada(
                                 resolucao
                             )
+
+                        analytics.logEvent("expression_solved", null)
+                        analytics.logEvent("solution_viewed", null)
 
                     }
 
@@ -247,6 +331,8 @@ fun HomeScreen(
 
                         expressaoGerada =
                             gerarExpressaoNumerica()
+
+                        analytics.logEvent("expression_generated", null)
 
                     }
 
@@ -286,6 +372,64 @@ fun HomeScreen(
                     )
                 )
 
+                // TRIO DE BOTÕES (COPIAR, DESAFIAR, COMPARTILHAR) - ESTADO 3
+                Row(
+                    modifier = Modifier
+                        .width(Dimens.Size.ButtonWidth * 0.92f), // 92% da largura do botão principal
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    AppActionButton(
+                        text = "Copiar",
+                        icon = Icons.Rounded.ContentCopy,
+                        onClick = {
+                            clipboardManager.setText(AnnotatedString(resolucaoTexto))
+                            Toast.makeText(context, "Resolução copiada!", Toast.LENGTH_SHORT).show()
+                            analytics.logEvent("result_copied", null)
+                        },
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    AppActionButton(
+                        text = "Desafiar",
+                        icon = Icons.Rounded.EmojiEvents,
+                        onClick = {
+                            val challengeMessage = "Você consegue resolver essa?\n\n$expressaoGerada\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, challengeMessage)
+                                type = "text/plain"
+                            }
+                            val shareIntent = Intent.createChooser(sendIntent, null)
+                            context.startActivity(shareIntent)
+                        },
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    AppActionButton(
+                        text = "",
+                        icon = Icons.Rounded.Share,
+                        onClick = {
+                            val shareMessage = "Resolvi essa expressão! Estuda aqui abaixo como foi.\n\n$resolucaoTexto\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, shareMessage)
+                                type = "text/plain"
+                            }
+                            val shareIntent = Intent.createChooser(sendIntent, null)
+                            context.startActivity(shareIntent)
+                            analytics.logEvent("result_shared", null)
+                        }
+                    )
+                }
+
+
+                Spacer(
+                    modifier = Modifier.height(
+                        Dimens.Home.BetweenButtons
+                    )
+                )
+
 
                 AppButton(
 
@@ -297,6 +441,8 @@ fun HomeScreen(
 
                         expressaoGerada =
                             gerarExpressaoNumerica()
+
+                        analytics.logEvent("expression_generated", null)
 
                         resolucaoTexto = ""
 
@@ -326,7 +472,12 @@ fun HomeScreen(
             showBackButton = expressaoGerada.isNotEmpty(),
             showMenu = true,
             fontScale = fontScale,
-            onFontScaleChange = onFontScaleChange
+            onFontScaleChange = { newScale ->
+                onFontScaleChange(newScale)
+                analytics.logEvent("font_scale_changed") {
+                    param("scale_value", newScale.toDouble())
+                }
+            }
         )
 
 

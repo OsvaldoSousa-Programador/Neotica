@@ -61,7 +61,7 @@ fun TermsScreen(
 
             // DATA
             Text(
-                text = "Última atualização: 16 de agosto de 2026",
+                text = "Última atualização: 17 de agosto de 2026",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

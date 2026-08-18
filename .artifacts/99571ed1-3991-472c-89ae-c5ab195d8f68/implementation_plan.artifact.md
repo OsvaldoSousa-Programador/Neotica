@@ -1,41 +1,33 @@
-# Plano de Implementação: Engenharia de Lançamento (Play Store)
+# Plano de Implementação: Alinhamento e Compactação do Trio de Botões
 
-Este plano visa finalizar as configurações técnicas para a geração do arquivo **AAB (Android App Bundle)** assinado, garantindo que o aplicativo esteja pronto para ser enviado ao Google Play Console.
+Este plano visa ajustar o trio de botões de ação (Copiar, Desafiar, Compartilhar) para que sua largura total coincida exatamente com a do botão principal ("Gerar/Resolver expressão") e que o conteúdo interno dos botões seja mais compacto, seguindo fielmente a imagem de referência.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> Para gerar o arquivo assinado, você precisará ter o seu arquivo **Keystore (.jks)** em mãos.
-> Vou configurar o projeto para ler os dados de um arquivo local seguro, assim não expomos suas senhas no código principal.
+> A largura total da linha de botões será agora vinculada a `Dimens.Size.ButtonWidth`. Reduziremos os espaçamentos internos para garantir que os textos caibam sem apertar o design.
 
 ## Propostas de Mudança
 
-### [Core] Configuração de Produção
+### [UI Components] Refinamento de Compactação
 
-#### [MODIFY] [build.gradle.kts](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/build.gradle.kts)
-- Habilitar otimizações de código (`isMinifyEnabled = true`).
-- Adicionar configuração de **Shrinking** de recursos para diminuir o tamanho do app.
-- Configurar o bloco `signingConfigs` para buscar dados de um arquivo externo.
+#### [MODIFY] [AppActionButton.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppActionButton.kt)
+- Reduzir `contentPadding` horizontal de 12.dp para **8.dp** para botões com texto.
+- Reduzir o `Spacer` entre ícone e texto de 8.dp para **4.dp**.
+- Garantir que a altura permaneça em **48.dp** para manter o alinhamento vertical com o botão quadrado.
 
-### [Segurança] Preparação da Assinatura
+### [UI/UX] Alinhamento na HomeScreen
 
-#### [NEW] `keystore.properties` (Instrução)
-- Vou orientar você a criar este arquivo na raiz do projeto com as informações da sua chave. Eu não criarei o arquivo com suas senhas por segurança, apenas prepararei o Gradle para lê-lo.
-
-### [Lógica] Revisão Final
-- Confirmado que o [Gerador.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/logic/Gerador.kt) já utiliza números aleatórios reais, sem dados "fake" de teste.
+#### [MODIFY] [HomeScreen.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/screens/HomeScreen.kt)
+- Alterar o modificador da `Row` do trio de botões (em ambos os estados) de `width(screenWidth)` para **`width(Dimens.Size.ButtonWidth)`**.
+- Remover o `padding` horizontal de margem, já que a largura agora é fixa e centralizada pela `Column`.
+- Reduzir o `Arrangement.spacedBy` de 10.dp para **8.dp** para ganhar espaço interno.
 
 ---
 
 ## Plano de Verificação
 
-### Geração do Arquivo
-1.  Após as mudanças, você deverá clicar em **Build > Generate Signed Bundle / APK**.
-2.  Selecionar **Android App Bundle**.
-3.  Usar as credenciais que você já possui.
-
-### Testes de Qualidade
-- **Build de Release**: Verificar se o Gradle gera o arquivo final sem erros de compilação com as otimizações ligadas.
-- **Tamanho do Arquivo**: Garantir que o AAB ficou o menor possível para facilitar o download pelos usuários.
-
-**Osvaldo, posso preparar o Gradle para o seu lançamento agora?** Vou deixar tudo no "gatilho" para você gerar o arquivo final.
+### Testes Manuais
+1.  **Alinhamento Visual**: Verificar se as bordas esquerda e direita do trio de botões estão perfeitamente alinhadas com as bordas do botão grande azul/laranja abaixo.
+2.  **Compactação**: Confirmar se o texto "Copiar" e "Desafiar" está mais próximo do ícone e das bordas do botão.
+3.  **Acessibilidade**: Garantir que, mesmo compactos, os botões ainda cresçam corretamente quando o `fontScale` for aumentado.

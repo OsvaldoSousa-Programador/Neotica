@@ -3,146 +3,112 @@ package com.jumirandapisousa.nohetica.app.ui.legal
 object LegalTexts {
 
     const val PrivacyPolicy = """
-Bem-vindo a Nohetica!
+Bem-vindo a Nohética!
 
-A sua privacidade é importante para nós. Esta Política de Privacidade explica como a Nohetica trata as informações dos usuários do aplicativo.
+A sua privacidade é importante para nós. Esta Política de Privacidade explica como a Nohética trata as informações dos usuários do aplicativo.
 
-1. SOBRE A NOHETICA
+1. SOBRE A NOHÉTICA
 
-A Nohetica é um aplicativo educacional desenvolvido para auxiliar estudantes na geração e resolução de expressões matemáticas.
+A Nohética é um aplicativo educacional desenvolvido para auxiliar estudantes na geração e resolução de expressões matemáticas.
 
 2. DADOS PESSOAIS
 
-Nesta versão do aplicativo, a Nohetica não solicita cadastro, não exige login e não coleta dados pessoais, como nome, e-mail, telefone ou documentos de identificação.
+Nesta versão do aplicativo, a Nohética não solicita cadastro, não exige login e não coleta dados pessoais identificáveis, como nome, e-mail, telefone ou documentos de identificação.
 
-3. INFORMAÇÕES DE USO
+3. INFORMAÇÕES DE USO E ANALYTICS
 
-A Nohetica funciona localmente no dispositivo do usuário para gerar e resolver expressões matemáticas.
+A Nohética funciona majoritariamente de forma local. No entanto, para melhorar a experiência do usuário e a eficácia educativa do app, utilizamos o Firebase Analytics.
 
-Caso sejam utilizados serviços de análise de uso e monitoramento de falhas, como Firebase Analytics e Firebase Crashlytics, poderão ser coletadas informações técnicas e estatísticas de forma automática e, sempre que possível, anonimizada. Essas informações podem incluir:
+Poderão ser coletadas informações técnicas e estatísticas de forma automática e anonimizada, tais como:
 
-• modelo do dispositivo;
-• versão do sistema operacional;
-• idioma do dispositivo;
-• informações sobre falhas (crashes);
-• estatísticas de uso do aplicativo.
+• modelo do dispositivo e versão do sistema operacional;
+• interações no app (geração de expressões, visualização de soluções, cópia e compartilhamento de resultados);
+• uso de recursos de acessibilidade (ajuste de escala de fonte);
+• informações sobre falhas técnicas (crashes).
 
-Esses dados são utilizados exclusivamente para melhorar o desempenho, a estabilidade e a experi\u00eancia de uso da Nohetica.
+Esses dados são utilizados exclusivamente para entender como os usuários interagem com o aplicativo e para guiar melhorias futuras, sem nunca identificar pessoalmente o usuário.
 
-4. PERMISS\u00d5ES
+4. PERMISSÕES
 
-Nesta versão, a Nohetica não solicita acesso a:
+O aplicativo solicita permissão de INTERNET e ESTADO DA REDE apenas para o funcionamento das métricas de melhoria mencionadas acima. Não solicitamos acesso a:
 
-• localização;
-• câmera;
-• microfone;
-• contatos;
-• fotos ou arquivos pessoais do dispositivo.
+• localização, câmera ou microfone;
+• contatos ou arquivos pessoais do dispositivo.
 
-Caso novas funcionalidades sejam adicionadas no futuro e exijam permissões adicionais, esta Política de Privacidade será atualizada.
+5. COMPARTILHAMENTO DE INFORMAÇÕES
 
-5. COMPARTILHAMENTO DE INFORMA\u00c7\u00d5ES
+A Nohética não vende ou compartilha dados dos usuários com terceiros para fins comerciais. O tratamento de dados técnicos via Firebase segue as políticas de privacidade da Google.
 
-A Nohetica não vende, comercializa ou compartilha dados pessoais dos usuários com terceiros.
+6. SEGURANÇA
 
-Caso sejam utilizados serviços de terceiros para análise de desempenho e funcionamento do aplicativo, o tratamento das informações ocorrerá de acordo com as respectivas políticas de privacidade desses serviços.
+Adotamos boas práticas de desenvolvimento para manter a segurança e a confiabilidade do aplicativo.
 
-6. SEGURAN\u00c7A
+7. PÚBLICO-ALVO
 
-Embora esta versão do aplicativo não armazene dados pessoais dos usuários, adotamos boas práticas para manter a segurança e a confiabilidade do aplicativo.
+A Nohética é destinada ao público em geral, sendo especialmente útil para estudantes do Ensino Fundamental e Médio.
 
-7. P\u00daBLICO-ALVO
+8. ALTERAÇÕES DESTA POLÍTICA
 
-A Nohetica é destinada ao público em geral, sendo especialmente útil para estudantes do Ensino Fundamental e Médio.
-
-8. ALTERA\u00c7\u00d5ES DESTA POL\u00cdTICA
-
-Esta Política de Privacidade poderá ser atualizada sempre que houver mudanças nas funcionalidades do aplicativo ou na forma de tratamento das informações.
-
-Recomendamos que os usuários consultem esta página periodicamente.
+Esta Política de Privacidade poderá ser atualizada periodicamente. Recomendamos que os usuários consultem esta página para se manterem informados.
 
 9. CONTATO
 
-Em caso de dúvidas, sugestões ou solicitações relacionadas a esta Política de Privacidade, entre em contato pelo e-mail:
+Em caso de dúvidas ou sugestões relacionadas a esta Política de Privacidade, entre em contato pelo e-mail:
 
 juliana.mirandadecastro@gmail.com
 
-10. ACEITA\u00c7\u00c3O
+10. ACEITAÇÃO
 
-Ao utilizar a Nohetica, o usuário declara estar ciente desta Política de Privacidade.
+Ao utilizar a Nohética, o usuário declara estar ciente desta Política de Privacidade.
 """
 
 
     const val TermsOfUse = """
-Bem-vindo a Nohetica!
+Bem-vindo a Nohética!
 
-Estes Termos de Uso estabelecem as condições para utilização do aplicativo Nohetica. Ao utilizar o aplicativo, você concorda com os termos descritos neste documento.
+Estes Termos de Uso estabelecem as condições para utilização do aplicativo Nohética. Ao utilizar o aplicativo, você concorda com os termos descritos neste documento.
 
-1. SOBRE NOHETICA
+1. SOBRE A NOHÉTICA
 
-A Nohetica é um aplicativo educacional desenvolvido para auxiliar estudantes na geração e resolução de expressões matemáticas. O aplicativo tem finalidade exclusivamente educativa e de apoio ao aprendizado.
+A Nohética é um aplicativo educacional desenvolvido para auxiliar estudantes na geração e resolução de expressões matemáticas. O aplicativo tem finalidade exclusivamente educativa e de apoio ao aprendizado.
 
-2. ACEITA\u00c7\u00c3O DOS TERMOS
+2. ACEITAÇÃO DOS TERMOS
 
-Ao instalar ou utilizar a Nohetica, o usuário declara que leu, compreendeu e concorda com estes Termos de Uso.
+Ao instalar ou utilizar a Nohética, o usuário declara que leu, compreendeu e concorda com estes Termos de Uso.
 
 Caso não concorde com qualquer disposição deste documento, recomenda-se não utilizar o aplicativo.
 
-3. UTILIZA\u00c7\u00c3O DO APLICATIVO
+3. UTILIZAÇÃO DO APLICATIVO
 
-O usuário poderá utilizar a Nohetica para gerar e resolver expressões matemáticas de acordo com as funcionalidades disponíveis em cada versão do aplicativo.
+O usuário poderá utilizar a Nohética para gerar e resolver expressões matemáticas. O uso deve ocorrer de forma responsável e em conformidade com a legislação vigente.
 
-O uso deve ocorrer de forma responsável e em conformidade com a legislação vigente.
+4. GRATUIDADE E CADASTRO
 
-4. CADASTRO
+Nesta versão da Nohética, não é necessário criar conta ou realizar login para utilizar o aplicativo. O app é disponibilizado gratuitamente.
 
-Nesta versão da Nohetica não é necessário criar conta ou realizar login para utilizar o aplicativo.
+5. PROPRIEDADE INTELECTUAL
 
-5. GRATUIDADE
+Todos os direitos relacionados ao aplicativo Nohética, incluindo seu nome, identidade visual, interface, design, algoritmos, código-fonte, textos e ícones pertencem aos seus desenvolvedores.
 
-A versão atual da Nohetica é disponibilizada gratuitamente.
+É proibida a reprodução, engenharia reversa ou comercialização desses conteúdos sem autorização prévia por escrito.
 
-No futuro poderão ser disponibilizadas novas funcionalidades, recursos opcionais ou versões pagas, sem prejuízo aos direitos adquiridos pelos usuários da versão gratuita.
+6. LIMITAÇÃO DE RESPONSABILIDADE
 
-6. PROPRIEDADE INTELECTUAL
+A Nohética foi desenvolvida para fins educacionais. Embora busquemos a máxima precisão nos cálculos, o usuário é responsável por conferir os resultados quando utilizados em atividades avaliativas ou acadêmicas oficiais. Os desenvolvedores não se responsabilizam por eventuais erros decorrentes do uso das informações.
 
-Todos os direitos relacionados ao aplicativo Nohetica, incluindo seu nome, identidade visual, interface, design, ilustrações, algoritmos, código-fonte, textos, ícones e demais elementos que compõem o aplicativo são protegidos pela legislação de propriedade intelectual e pertencem aos seus desenvolvedores ou licenciantes.
+7. ATUALIZAÇÕES
 
-É proibida a reprodução, distribuição, modificação, engenharia reversa, comercialização ou utilização desses conteúdos sem autorização prévia por escrito.
+A Nohética poderá receber atualizações destinadas à melhorias de desempenho ou novas funcionalidades. Os desenvolvedores poderão suspender o aplicativo a qualquer momento, buscando informar os usuários quando possível.
 
-7. LIMITA\u00c7\u00c3O DE RESPONSABILIDADE
+8. PRIVACIDADE
 
-A Nohetica foi desenvolvida para fins educacionais.
+O tratamento de informações relacionadas ao uso da Nohética é descrito na Política de Privacidade, documento que complementa estes Termos de Uso.
 
-Embora sejam adotadas medidas para garantir a qualidade dos cálculos e das funcionalidades do aplicativo, não é garantido que o serviço esteja livre de falhas, indisponibilidades temporárias ou erros.
-
-O usuário é responsável por conferir os resultados quando utilizados em atividades acadêmicas, avaliações ou qualquer outra finalidade relevante.
-
-8. ATUALIZA\u00c7\u00d5ES
-
-A Nohetica poderá receber atualizações destinadas à correção de erros, melhorias de desempenho, inclusão de novas funcionalidades ou alterações na interface.
-
-9. SUSPENS\u00c3O OU ENCERRAMENTO
-
-Os desenvolvedores poderão alterar, suspender ou descontinuar o aplicativo, total ou parcialmente, a qualquer momento, buscando sempre informar os usuários quando possível.
-
-10. PRIVACIDADE
-
-O tratamento de informações relacionadas ao uso da Nohetica é descrito na Política de Privacidade, documento que complementa estes Termos de Uso.
-
-11. ALTERA\u00c7\u00d5ES DESTES TERMOS
-
-Os presentes Termos de Uso poderão ser modificados para refletir mudanças legais, técnicas ou funcionais do aplicativo.
-
-A versão mais recente estará sempre disponível juntamente com o aplicativo ou em seu site oficial.
-
-12. LEGISLA\u00c7\u00c3O APLIC\u00cdVEL
+9. LEGISLAÇÃO APLICÁVEL
 
 Estes Termos de Uso são regidos pelas leis da República Federativa do Brasil.
 
-Sempre que possível, eventuais conflitos deverão ser resolvidos de forma amigável entre as partes.
-
-13. CONTATO
+10. CONTATO
 
 Em caso de dúvidas, sugestões ou solicitações relacionadas a estes Termos de Uso, entre em contato pelo e-mail:
 

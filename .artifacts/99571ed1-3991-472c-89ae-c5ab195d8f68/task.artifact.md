@@ -1,7 +1,4 @@
-- [x] Atualizar Application ID e Namespace no `build.gradle.kts`
-- [x] Criar nova estrutura de pastas `com/jumirandapisousa/nohetica/app`
-- [x] Mover todos os arquivos `.kt` para os novos pacotes
-- [x] Atualizar declarações de `package` e `import` em todos os arquivos
-- [x] Atualizar `AndroidManifest.xml`
-- [x] Realizar Gradle Sync e Limpar Projeto
-- [x] Testar execução do app
+- [ ] Compactar conteúdo interno (padding e spacer) em `AppActionButton.kt`
+- [ ] Ajustar largura do trio de botões na `HomeScreen.kt` para `Dimens.Size.ButtonWidth`
+- [ ] Ajustar `spacedBy` e pesos na `HomeScreen.kt` para alinhamento perfeito
+- [ ] Testar alinhamento visual com o botão principal
