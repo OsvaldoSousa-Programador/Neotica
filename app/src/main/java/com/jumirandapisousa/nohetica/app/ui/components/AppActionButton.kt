@@ -71,11 +71,11 @@ fun AppActionButton(
         ),
         shape = RoundedCornerShape(8.dp),
         modifier = modifier
-            .height(38.dp)
-            .width(if (text.isEmpty()) 42.dp else 97.dp)
+            .height(49.dp) // Aumentado em 16.67% (42 * 1.1667)
+            .width(if (text.isEmpty()) 54.dp else 125.dp) // Aumentado proporcionalmente
             .scale(scale),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(
-            horizontal = if (text.isEmpty()) 0.dp else 4.dp // Padding reduzido para caber tudo em 97dp
+            horizontal = if (text.isEmpty()) 0.dp else 8.dp
         )
     ) {
         Row(
@@ -85,7 +85,7 @@ fun AppActionButton(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(14.dp),
+                modifier = Modifier.size(18.dp), // Aumentado proporcionalmente
                 tint = NoeActionContent
             )
             if (text.isNotEmpty()) {
@@ -93,7 +93,7 @@ fun AppActionButton(
                 Text(
                     text = text,
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        fontSize = 14.sp,
+                        fontSize = 18.sp, // Aumentado proporcionalmente
                         fontWeight = FontWeight.Medium,
                         color = NoeActionContent
                     ),

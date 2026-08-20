@@ -1,42 +1,42 @@
-# Plano de Implementação: Gradientes nos Botões de Ação (Azul e Laranja)
+# Plano de Implementação: Alinhamento Milimétrico do Sistema de Ajuda
 
-Este plano visa adicionar gradientes horizontais personalizados para todos os botões principais do aplicativo, melhorando a estética visual e o destaque das ações.
+Este plano visa ajustar o posicionamento do ícone informativo e do balão de dica (bubble) para que fiquem idênticos à imagem de referência, garantindo que a ponta do balão toque o ícone e que o conteúdo abaixo seja desfocado corretamente.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> Todos os botões principais (Gerar e Resolver) agora usarão gradientes horizontais. O efeito de "shrink" (encolhimento) ao toque será mantido para garantir a interatividade.
+> O balão de ajuda será posicionado de forma que sua ponta superior direita toque a diagonal inferior esquerda do ícone "i". O quadro branco (Dashboard) será totalmente desfocado para dar ênfase à mensagem.
 
 ## Propostas de Mudança
 
-### [Core] Identidade Visual
+### [UI Components] Ajustes de Forma e Espaço
 
-#### [MODIFY] [Color.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/theme/Color.kt)
-- **Botão Gerar (Azul)**:
-    - Adicionar `ButtonBlueStart = Color(0xFF49ACDA)`
-    - Adicionar `ButtonBlueEnd = Color(0xFF028EE6)`
-- **Botão Resolver (Laranja)**:
-    - Adicionar `ButtonOrangeStart = Color(0xFFE96F22)`
-    - Adicionar `ButtonOrangeEnd = Color(0xFFE45900)`
+#### [MODIFY] [AppCard.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppCard.kt)
+- Aumentar o `Spacer` no topo da expressão para **64.dp**. Isso garante que o texto da conta comece exatamente abaixo da área ocupada pelo ícone "i", evitando sobreposição.
 
-### [UI Components] Refatoração de Botão
+#### [MODIFY] [AppInfoBubble.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppInfoBubble.kt)
+- Garantir que a ponta aguda esteja no canto superior direito: `RoundedCornerShape(topStart = 24.dp, topEnd = 4.dp, bottomStart = 24.dp, bottomEnd = 24.dp)`.
+- Remover o `fillMaxWidth()` interno para que o balão possa ser posicionado com precisão via `offset` sem "empurrar" as bordas da tela.
 
-#### [MODIFY] [AppButton.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppButton.kt)
-- Adicionar parâmetro `backgroundBrush: Brush? = null`.
-- Se o `brush` for fornecido, o botão usará o gradiente. Caso contrário, usará a cor sólida (mantendo compatibilidade).
-
-### [UI/UX] Aplicação na HomeScreen
+### [UI/UX] Posicionamento na HomeScreen
 
 #### [MODIFY] [HomeScreen.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/screens/HomeScreen.kt)
-- Criar os dois objetos `Brush` (Azul e Laranja).
-- Aplicar o **Gradiente Azul** nos botões "Gerar Expressão" e "Gerar Nova Expressão".
-- Aplicar o **Gradiente Laranja** no botão "Resolver Expressão".
+- **Botão "i"**:
+    - Fundo: `#B0DAEE`.
+    - Texto "i": `#282525`, negrito.
+    - Posição: `top = 28.dp, end = 20.dp`.
+- **Balão (Bubble)**:
+    - Aplicar um `offset` calculado: `x = (-52).dp, y = 60.dp`.
+    - Isso fará com que a ponta do balão toque exatamente a diagonal do ícone, conforme a imagem.
+- **Desfoque**: Manter o desfoque de 12.dp em todo o `AppDashboardCard`.
 
 ---
 
 ## Plano de Verificação
 
 ### Testes Manuais
-1.  **Visual:** Verificar se os botões azuis e laranjas agora possuem transições de cor suaves da esquerda para a direita.
-2.  **Acessibilidade:** Confirmar que os botões continuam crescendo proporcionalmente quando o tamanho da fonte é aumentado.
-3.  **Feedback:** Garantir que a animação de pulso continue clara sobre os novos fundos gradientes.
+1.  **Fidelidade Visual**: Comparar o resultado final com a imagem fornecida, focando no ponto de contato entre o balão e o ícone.
+2.  **Legibilidade**: Confirmar que a conta matemática (mesmo desfocada) não está mais "por trás" do ícone "i".
+3.  **Interação**: Clicar em "Entendi!" e verificar se o desfoque global é removido instantaneamente.
+
+**Osvaldo, esse ajuste milimétrico está de acordo? Posso aplicar agora?**

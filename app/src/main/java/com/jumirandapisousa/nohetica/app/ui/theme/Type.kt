@@ -23,7 +23,7 @@ fun getAppTypography(fontScale: Float): Typography {
         // Expressão matemática exibida no Card
         headlineMedium = TextStyle(
             fontFamily = Inter,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Normal,
             fontSize = (24 * fontScale).sp,
             letterSpacing = 0.sp
         ),

@@ -1,3 +1,5 @@
-- [ ] Atualizar dimensões e estilos no `AppActionButton.kt` (97x38, raio 8dp, fonte 14sp Medium)
-- [ ] Ajustar chamadas na `HomeScreen.kt` removendo pesos e garantindo alinhamento
-- [ ] Testar visual final no celular
+- [ ] Redesenhar botão informativo no `AppCard.kt` e adicionar respiro no topo
+- [ ] Mover estado de ajuda para a `HomeScreen.kt`
+- [ ] Implementar desfoque total no Dashboard na `HomeScreen.kt`
+- [ ] Ajustar `AppInfoBubble.kt` para exibição centralizada
+- [ ] Testar visual e interatividade
