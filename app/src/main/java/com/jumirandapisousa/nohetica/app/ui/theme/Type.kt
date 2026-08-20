@@ -24,7 +24,7 @@ fun getAppTypography(fontScale: Float): Typography {
         headlineMedium = TextStyle(
             fontFamily = Inter,
             fontWeight = FontWeight.Medium,
-            fontSize = (18 * fontScale).sp,
+            fontSize = (24 * fontScale).sp,
             letterSpacing = 0.sp
         ),
 

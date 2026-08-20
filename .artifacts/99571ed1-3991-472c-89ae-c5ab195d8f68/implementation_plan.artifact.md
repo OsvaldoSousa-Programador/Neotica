@@ -1,41 +1,42 @@
-# Plano de Implementação: Engenharia de Lançamento (Play Store)
+# Plano de Implementação: Gradientes nos Botões de Ação (Azul e Laranja)
 
-Este plano visa finalizar as configurações técnicas para a geração do arquivo **AAB (Android App Bundle)** assinado, garantindo que o aplicativo esteja pronto para ser enviado ao Google Play Console.
+Este plano visa adicionar gradientes horizontais personalizados para todos os botões principais do aplicativo, melhorando a estética visual e o destaque das ações.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> Para gerar o arquivo assinado, você precisará ter o seu arquivo **Keystore (.jks)** em mãos.
-> Vou configurar o projeto para ler os dados de um arquivo local seguro, assim não expomos suas senhas no código principal.
+> Todos os botões principais (Gerar e Resolver) agora usarão gradientes horizontais. O efeito de "shrink" (encolhimento) ao toque será mantido para garantir a interatividade.
 
 ## Propostas de Mudança
 
-### [Core] Configuração de Produção
+### [Core] Identidade Visual
 
-#### [MODIFY] [build.gradle.kts](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/build.gradle.kts)
-- Habilitar otimizações de código (`isMinifyEnabled = true`).
-- Adicionar configuração de **Shrinking** de recursos para diminuir o tamanho do app.
-- Configurar o bloco `signingConfigs` para buscar dados de um arquivo externo.
+#### [MODIFY] [Color.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/theme/Color.kt)
+- **Botão Gerar (Azul)**:
+    - Adicionar `ButtonBlueStart = Color(0xFF49ACDA)`
+    - Adicionar `ButtonBlueEnd = Color(0xFF028EE6)`
+- **Botão Resolver (Laranja)**:
+    - Adicionar `ButtonOrangeStart = Color(0xFFE96F22)`
+    - Adicionar `ButtonOrangeEnd = Color(0xFFE45900)`
 
-### [Segurança] Preparação da Assinatura
+### [UI Components] Refatoração de Botão
 
-#### [NEW] `keystore.properties` (Instrução)
-- Vou orientar você a criar este arquivo na raiz do projeto com as informações da sua chave. Eu não criarei o arquivo com suas senhas por segurança, apenas prepararei o Gradle para lê-lo.
+#### [MODIFY] [AppButton.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppButton.kt)
+- Adicionar parâmetro `backgroundBrush: Brush? = null`.
+- Se o `brush` for fornecido, o botão usará o gradiente. Caso contrário, usará a cor sólida (mantendo compatibilidade).
 
-### [Lógica] Revisão Final
-- Confirmado que o [Gerador.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/logic/Gerador.kt) já utiliza números aleatórios reais, sem dados "fake" de teste.
+### [UI/UX] Aplicação na HomeScreen
+
+#### [MODIFY] [HomeScreen.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/screens/HomeScreen.kt)
+- Criar os dois objetos `Brush` (Azul e Laranja).
+- Aplicar o **Gradiente Azul** nos botões "Gerar Expressão" e "Gerar Nova Expressão".
+- Aplicar o **Gradiente Laranja** no botão "Resolver Expressão".
 
 ---
 
 ## Plano de Verificação
 
-### Geração do Arquivo
-1.  Após as mudanças, você deverá clicar em **Build > Generate Signed Bundle / APK**.
-2.  Selecionar **Android App Bundle**.
-3.  Usar as credenciais que você já possui.
-
-### Testes de Qualidade
-- **Build de Release**: Verificar se o Gradle gera o arquivo final sem erros de compilação com as otimizações ligadas.
-- **Tamanho do Arquivo**: Garantir que o AAB ficou o menor possível para facilitar o download pelos usuários.
-
-**Osvaldo, posso preparar o Gradle para o seu lançamento agora?** Vou deixar tudo no "gatilho" para você gerar o arquivo final.
+### Testes Manuais
+1.  **Visual:** Verificar se os botões azuis e laranjas agora possuem transições de cor suaves da esquerda para a direita.
+2.  **Acessibilidade:** Confirmar que os botões continuam crescendo proporcionalmente quando o tamanho da fonte é aumentado.
+3.  **Feedback:** Garantir que a animação de pulso continue clara sobre os novos fundos gradientes.

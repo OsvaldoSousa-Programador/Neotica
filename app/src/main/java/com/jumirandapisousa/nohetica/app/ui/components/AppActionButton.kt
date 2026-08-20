@@ -28,10 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jumirandapisousa.nohetica.app.ui.theme.NoeTeal
-import com.jumirandapisousa.nohetica.app.ui.theme.White
+import com.jumirandapisousa.nohetica.app.ui.theme.NoeActionBackground
+import com.jumirandapisousa.nohetica.app.ui.theme.NoeActionContent
 import kotlinx.coroutines.delay
 
 @Composable
@@ -65,16 +66,16 @@ fun AppActionButton(
         onClick = onClick,
         interactionSource = interactionSource,
         colors = ButtonDefaults.buttonColors(
-            containerColor = NoeTeal,
-            contentColor = White
+            containerColor = NoeActionBackground,
+            contentColor = NoeActionContent
         ),
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(8.dp),
         modifier = modifier
-            .height(48.dp)
-            .defaultMinSize(minWidth = if (text.isEmpty()) 48.dp else 1.dp) // Quadrado se não houver texto
+            .height(38.dp)
+            .width(if (text.isEmpty()) 42.dp else 97.dp)
             .scale(scale),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(
-            horizontal = if (text.isEmpty()) 0.dp else 8.dp // Reduzido de 12dp para 8dp
+            horizontal = if (text.isEmpty()) 0.dp else 4.dp // Padding reduzido para caber tudo em 97dp
         )
     ) {
         Row(
@@ -84,16 +85,17 @@ fun AppActionButton(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(20.dp),
-                tint = White
+                modifier = Modifier.size(14.dp),
+                tint = NoeActionContent
             )
             if (text.isNotEmpty()) {
-                Spacer(modifier = Modifier.width(4.dp)) // Reduzido de 8dp para 4dp
+                Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = text,
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        fontSize = 16.sp,
-                        color = White
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = NoeActionContent
                     ),
                     maxLines = 1
                 )

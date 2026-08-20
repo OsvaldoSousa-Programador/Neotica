@@ -1,29 +1,25 @@
-# Walkthrough - Atualização de Termos e Privacidade (Nohética)
+# Walkthrough - Identidade Visual: Gradiente na HomeScreen
 
-Concluímos a revisão completa dos textos legais do aplicativo, garantindo que o **Nohética** esteja em total conformidade com as exigências de transparência da Play Store e reflita sua nova identidade visual.
+Implementamos um novo fundo gradiente vertical exclusivo para a `HomeScreen`, elevando a estética visual do aplicativo com tons suaves de verde e lilás.
 
 ## Alterações Realizadas
 
-### Padronização da Marca
-- **Grafia Correta**: Substituímos todas as menções a "Nohetica" pela grafia oficial: "**Nohética**" (com acento).
-- **Datas de Revisão**: Atualizamos a data de última modificação em todas as telas para **17 de agosto de 2026**.
+### Cores de Marca
+- **Color.kt**: Adicionadas as novas cores oficiais do gradiente:
+    - `GradientTop`: #D5EEE0 (Verde menta suave)
+    - `GradientBottom`: #E5E3EF (Lilás lavanda)
 
-### Transparência e Analytics
-- **Seção de Dados**: Incluímos parágrafos detalhados na **Política de Privacidade** sobre o uso do Firebase Analytics.
-- **Detalhamento**: Explicamos ao usuário que coletamos eventos anônimos (como geração de expressões e uso de acessibilidade) apenas para melhorar o aplicativo educacional, sem coletar nomes ou e-mails.
-- **Permissões**: Justificamos o uso das permissões de Internet para o envio dessas métricas de melhoria.
+### Interface (HomeScreen)
+- **HomeScreen.kt**: O contêiner principal (`Box`) agora utiliza um `Modifier.background` com um `Brush.verticalGradient`.
+- O gradiente flui do topo para a base da tela, criando uma profundidade visual elegante por trás dos componentes.
+- A imagem decorativa original foi mantida, aparecendo sobre o gradiente na tela inicial, o que cria um efeito de camadas interessante.
 
-### Refinamento Jurídico
-- **Isenção de Responsabilidade**: Reforçamos que o app é uma ferramenta de apoio e que os alunos devem sempre conferir os resultados em contextos de provas oficiais.
-- **E-mail de Contato**: Mantivemos o e-mail de suporte para garantir que os usuários tenham um canal direto com os desenvolvedores.
+## O que observar
 
-## O que testar
-
-1.  Abra o menu lateral (três pontinhos).
-2.  Toque em **Termos de Uso**: Verifique se o nome "Nohética" está correto e se a data no topo é a de hoje.
-3.  Toque em **Política de Privacidade**: Verifique o novo item "3. INFORMAÇÕES DE USO E ANALYTICS" que detalha o compromisso com a privacidade e o uso do Firebase.
+1.  **Suavidade**: Note como as cores escolhidas são relaxantes e não competem com a leitura das expressões matemáticas.
+2.  **Foco na Home**: Ao navegar para as telas de "Termos de Uso" ou "Privacidade", você verá que elas mantêm o fundo padrão, destacando a `HomeScreen` como o coração interativo do app.
 
 ---
 
-> [!IMPORTANT]
-> Ter termos de privacidade claros e atualizados é um dos principais critérios que o Google avalia durante a revisão do aplicativo. O **Nohética** agora passa uma imagem de seriedade e confiança.
+> [!TIP]
+> Esse tipo de gradiente vertical ajuda a guiar o olhar do usuário do topo (onde está a logo) para a base (onde estão as ações), melhorando a hierarquia visual.

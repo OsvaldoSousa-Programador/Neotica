@@ -1,6 +1,7 @@
 package com.jumirandapisousa.nohetica.app.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -24,9 +26,12 @@ import androidx.compose.ui.text.AnnotatedString
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Calculate
 import androidx.compose.material.icons.rounded.ContentCopy
+import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material.icons.rounded.EmojiEvents
+import androidx.compose.material.icons.outlined.EmojiEvents
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.foundation.layout.Row
 import com.jumirandapisousa.nohetica.app.ui.components.AppActionButton
 import androidx.compose.ui.res.painterResource
@@ -53,6 +58,12 @@ import com.jumirandapisousa.nohetica.app.ui.theme.Dimens
 import com.jumirandapisousa.nohetica.app.ui.theme.ExpressoesNumericasTheme
 import com.jumirandapisousa.nohetica.app.ui.theme.NoeBlue
 import com.jumirandapisousa.nohetica.app.ui.theme.NoeOrange
+import com.jumirandapisousa.nohetica.app.ui.theme.GradientTop
+import com.jumirandapisousa.nohetica.app.ui.theme.GradientBottom
+import com.jumirandapisousa.nohetica.app.ui.theme.ButtonBlueStart
+import com.jumirandapisousa.nohetica.app.ui.theme.ButtonBlueEnd
+import com.jumirandapisousa.nohetica.app.ui.theme.ButtonOrangeStart
+import com.jumirandapisousa.nohetica.app.ui.theme.ButtonOrangeEnd
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.alpha
 
@@ -84,6 +95,9 @@ fun HomeScreen(
     val horizontalScrollState = rememberScrollState()
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
 
+    val blueBrush = Brush.horizontalGradient(listOf(ButtonBlueStart, ButtonBlueEnd))
+    val orangeBrush = Brush.horizontalGradient(listOf(ButtonOrangeStart, ButtonOrangeEnd))
+
     // Efeito para centralizar o scroll automaticamente quando a expressão mudar
     LaunchedEffect(expressaoGerada, resolucaoTexto) {
         // Aguarda um pequeno delay para o layout calcular a nova largura
@@ -97,7 +111,13 @@ fun HomeScreen(
 
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(GradientTop, GradientBottom)
+                )
+            )
     ) {
 
 
@@ -179,7 +199,7 @@ fun HomeScreen(
 
                     text = "Gerar Expressão",
 
-                    backgroundColor = NoeBlue,
+                    backgroundBrush = blueBrush,
 
                     onClick = {
 
@@ -233,9 +253,8 @@ fun HomeScreen(
 
                 // TRIO DE BOTÕES (COPIAR, DESAFIAR, COMPARTILHAR) - ESTADO 2
                 Row(
-                    modifier = Modifier
-                        .width(Dimens.Size.ButtonWidth * 0.92f), // 92% da largura do botão principal
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AppActionButton(
@@ -244,13 +263,14 @@ fun HomeScreen(
                         onClick = {
                             clipboardManager.setText(AnnotatedString(expressaoGerada))
                             Toast.makeText(context, "Pergunta copiada!", Toast.LENGTH_SHORT).show()
-                        },
-                        modifier = Modifier.weight(1f)
+                        }
                     )
+
+                    Spacer(modifier = Modifier.width(8.dp))
 
                     AppActionButton(
                         text = "Desafiar",
-                        icon = Icons.Rounded.EmojiEvents,
+                        icon = Icons.Outlined.EmojiEvents,
                         onClick = {
                             val challengeMessage = "Você consegue resolver essa?\n\n$expressaoGerada\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
                             val sendIntent: Intent = Intent().apply {
@@ -260,13 +280,14 @@ fun HomeScreen(
                             }
                             val shareIntent = Intent.createChooser(sendIntent, null)
                             context.startActivity(shareIntent)
-                        },
-                        modifier = Modifier.weight(1f)
+                        }
                     )
+
+                    Spacer(modifier = Modifier.width(8.dp))
 
                     AppActionButton(
                         text = "",
-                        icon = Icons.Rounded.Share,
+                        icon = Icons.Outlined.Share,
                         onClick = {
                             val shareMessage = "Duvido você resolver essa expressão! 🧠\n\n$expressaoGerada\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
                             val sendIntent: Intent = Intent().apply {
@@ -290,7 +311,7 @@ fun HomeScreen(
 
                     text = "Resolver Expressão",
 
-                    backgroundColor = NoeOrange,
+                    backgroundBrush = orangeBrush,
 
                     onClick = {
 
@@ -325,7 +346,7 @@ fun HomeScreen(
 
                     text = "Gerar Nova Expressão",
 
-                    backgroundColor = NoeBlue,
+                    backgroundBrush = blueBrush,
 
                     onClick = {
 
@@ -374,9 +395,8 @@ fun HomeScreen(
 
                 // TRIO DE BOTÕES (COPIAR, DESAFIAR, COMPARTILHAR) - ESTADO 3
                 Row(
-                    modifier = Modifier
-                        .width(Dimens.Size.ButtonWidth * 0.92f), // 92% da largura do botão principal
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AppActionButton(
@@ -386,13 +406,14 @@ fun HomeScreen(
                             clipboardManager.setText(AnnotatedString(resolucaoTexto))
                             Toast.makeText(context, "Resolução copiada!", Toast.LENGTH_SHORT).show()
                             analytics.logEvent("result_copied", null)
-                        },
-                        modifier = Modifier.weight(1f)
+                        }
                     )
+
+                    Spacer(modifier = Modifier.width(8.dp))
 
                     AppActionButton(
                         text = "Desafiar",
-                        icon = Icons.Rounded.EmojiEvents,
+                        icon = Icons.Outlined.EmojiEvents,
                         onClick = {
                             val challengeMessage = "Você consegue resolver essa?\n\n$expressaoGerada\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
                             val sendIntent: Intent = Intent().apply {
@@ -402,13 +423,14 @@ fun HomeScreen(
                             }
                             val shareIntent = Intent.createChooser(sendIntent, null)
                             context.startActivity(shareIntent)
-                        },
-                        modifier = Modifier.weight(1f)
+                        }
                     )
+
+                    Spacer(modifier = Modifier.width(8.dp))
 
                     AppActionButton(
                         text = "",
-                        icon = Icons.Rounded.Share,
+                        icon = Icons.Outlined.Share,
                         onClick = {
                             val shareMessage = "Resolvi essa expressão! Estuda aqui abaixo como foi.\n\n$resolucaoTexto\n\nBaixe o app: https://play.google.com/store/apps/details?id=com.jumirandapisousa.nohetica.app"
                             val sendIntent: Intent = Intent().apply {
@@ -435,7 +457,7 @@ fun HomeScreen(
 
                     text = "Gerar Nova Expressão",
 
-                    backgroundColor = NoeBlue,
+                    backgroundBrush = blueBrush,
 
                     onClick = {
 

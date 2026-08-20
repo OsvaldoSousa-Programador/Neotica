@@ -10,6 +10,8 @@ val NoeRed = Color(0xFFFF4C4B)
 val NoePurple = Color(0xFF594083)
 val NeoBlueCard = Color(0xFFC9F3F3)
 val NoeTeal = Color(0xFF14806E)
+val NoeActionBackground = Color(0xFFB0DAEE)
+val NoeActionContent = Color(0xFF282525)
 
 // Cores neutras
 val White = Color(0xFFFFFFFF)
@@ -22,3 +24,11 @@ val MenuDivider = Color(0xFFE5E7EB)
 val MenuText = Color(0xFF263238)
 val LegalCardBackground = Color(0xFFF8FAFC)
 val BgTermos = Color(0xFFD3EEEB)
+val GradientTop = Color(0xFFD5EEE0)
+val GradientBottom = Color(0xFFE5E3EF)
+
+// Cores dos Gradientes dos Botões
+val ButtonBlueStart = Color(0xFF49ACDA)
+val ButtonBlueEnd = Color(0xFF028EE6)
+val ButtonOrangeStart = Color(0xFFE96F22)
+val ButtonOrangeEnd = Color(0xFFE45900)

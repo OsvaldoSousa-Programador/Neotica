@@ -1,4 +1,3 @@
-- [ ] Compactar conteúdo interno (padding e spacer) em `AppActionButton.kt`
-- [ ] Ajustar largura do trio de botões na `HomeScreen.kt` para `Dimens.Size.ButtonWidth`
-- [ ] Ajustar `spacedBy` e pesos na `HomeScreen.kt` para alinhamento perfeito
-- [ ] Testar alinhamento visual com o botão principal
+- [ ] Atualizar dimensões e estilos no `AppActionButton.kt` (97x38, raio 8dp, fonte 14sp Medium)
+- [ ] Ajustar chamadas na `HomeScreen.kt` removendo pesos e garantindo alinhamento
+- [ ] Testar visual final no celular

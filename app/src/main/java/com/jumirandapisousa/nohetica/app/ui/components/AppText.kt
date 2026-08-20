@@ -11,6 +11,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 
+import com.jumirandapisousa.nohetica.app.ui.theme.NoeActionContent
+
 @Composable
 fun AppTitleText(
     text: String,
@@ -87,6 +89,7 @@ fun AppExpressionText(
         text = textoFormatado,
         modifier = modifier,
         style = MaterialTheme.typography.headlineMedium,
+        color = NoeActionContent,
         textAlign = TextAlign.Start,
         softWrap = true
     )
