@@ -1,38 +1,38 @@
-# Ajuste do Momento de Exibição do Modal Informativo
+# Criação de Nova Keystore e Ajuste de Versão
 
-Este plano visa alterar o comportamento do modal informativo (Welcome Modal) para que ele não apareça imediatamente ao abrir o app, mas sim quando a primeira expressão for gerada (o que chamamos de "Estado 2" na `HomeScreen`).
+Este plano visa resolver o bloqueio de senha criando uma nova chave de assinatura e sincronizando a versão do aplicativo com a sua documentação (`0.9.0`).
 
 ## User Review Required
 
 > [!IMPORTANT]
-> O modal continuará aparecendo apenas uma vez (no primeiro acesso), conforme solicitado. A única mudança é **quando** ele dispara pela primeira vez.
+> **SEGURANÇA:** Ao criar a nova senha agora, por favor, anote-a imediatamente em um papel físico ou em um gerenciador de senhas seguro. Evite caracteres especiais muito complexos se o teclado costuma dar problema, mas mantenha a segurança.
+>
+> **PRIMEIRO ENVIO:** Estamos procedendo assumindo que este é o **primeiro** envio do app para a Google Play Console.
 
 ## Proposed Changes
 
-### UI Components
+### Build Configuration
 
-#### [MODIFY] [HomeScreen.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/screens/HomeScreen.kt)
+#### [MODIFY] [build.gradle.kts](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/build.gradle.kts)
+Alterar a versão do aplicativo para refletir o estágio de pré-lançamento.
 
-Alterar a condição lógica que exibe o `AppInfoModal`.
+- `versionName`: de `"1.0"` para `"0.9.0"`
 
-**Antes:**
-```kotlin
-if (showWelcomeModal) { ... }
-```
+### Procedimento Manual (Guia para Juliana)
 
-**Depois:**
-```kotlin
-if (showWelcomeModal && expressaoGerada.isNotEmpty() && resolucaoTexto.isEmpty()) { ... }
-```
+Como eu não posso digitar as senhas por você na interface do Windows, siga estes passos exatos:
 
-Isso garante que:
-1. O usuário veja a tela inicial limpa primeiro.
-2. O modal apareça com a dica de "resolver no caderno" exatamente quando ele tem uma expressão na tela para resolver.
+1. **Abrir o Assistente:** `Build` > `Generate Signed Bundle / APK...` > `Android App Bundle` > `Next`.
+2. **Nova Chave:** Clique em **"Create new..."**.
+3. **Key Store Path:** Clique na pastinha e escolha um local (ex: sua pasta `keys` mencionada). Nomeie como `nohetica-final.jks`.
+4. **Password (Store):** Digite a nova senha (ex: uma frase simples sem espaços).
+5. **Alias:** Use `nohetica_app`.
+6. **Password (Key):** Use a **mesma senha** da Store para evitar confusão.
+7. **Certificate:** Preencha apenas seu nome. Clique em **OK**.
+8. **Finalizar:** Avance e escolha a variante `release`.
 
 ## Verification Plan
 
 ### Manual Verification
-1. Limpar os dados do aplicativo ou mudar o nome da SharedPreferences para simular primeiro acesso.
-2. Abrir o app: o modal **não** deve aparecer.
-3. Clicar em "Gerar Expressão": o modal **deve** aparecer.
-4. Clicar em "Entendi!": o modal deve sumir e não aparecer mais, mesmo gerando novas expressões ou reiniciando o app.
+1. O Android Studio deve gerar o arquivo `.aab` sem erros de senha.
+2. Verificar se o arquivo `app-release.aab` foi criado na pasta `release`.

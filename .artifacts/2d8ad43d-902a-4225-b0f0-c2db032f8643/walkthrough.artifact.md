@@ -1,23 +1,30 @@
-# Walkthrough - Ajuste do Modal de Primeiro Acesso
+# Walkthrough - Preparação para Lançamento (Release)
 
-O modal informativo que orienta o usuário a "resolver com calma no caderno" foi reconfigurado para aparecer no momento mais oportuno: quando uma expressão está visível na tela.
+O projeto **ExpressoesNumericas** agora está configurado com as melhores práticas de otimização para a Google Play Store.
 
 ## Alterações Realizadas
 
-### Interface do Usuário (UI)
+### Configuração de Build
 
-#### [HomeScreen.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/screens/HomeScreen.kt)
+#### [build.gradle.kts](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/build.gradle.kts)
+- **Minificação (R8)**: Ativado via `isMinifyEnabled = true`. Isso reduz o tamanho do código removendo o que não é usado e ofuscando o restante.
+- **Limpeza de Recursos**: Ativado via `isShrinkResources = true`. Remove arquivos de recursos (layouts, imagens) que não são referenciados no código.
+- **Vínculo com Proguard**: O arquivo `proguard-rules.pro` foi vinculado oficialmente ao build de release.
 
-- **Lógica de Gatilho**: A condição para exibir o `AppInfoModal` foi alterada. Agora, além de verificar se é o primeiro acesso (`showWelcomeModal`), ele também verifica se uma expressão foi gerada (`expressaoGerada.isNotEmpty()`) e se a resolução ainda não foi mostrada (`resolucaoTexto.isEmpty()`).
+### Segurança e Estabilidade
 
-```diff
--        if (showWelcomeModal) {
-+        // Aparece apenas no primeiro acesso ao app, quando a primeira expressão é gerada (Estado 2)
-+        if (showWelcomeModal && expressaoGerada.isNotEmpty() && resolucaoTexto.isEmpty()) {
-```
+#### [proguard-rules.pro](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/proguard-rules.pro)
+- **Firebase**: Adicionada regra para garantir que as classes do Firebase não sejam removidas incorretamente pelo otimizador.
+- **Jetpack Compose**: Adicionada regra de preservação para membros de funções Composable.
+
+## Próximos Passos para Você
+
+> [!IMPORTANT]
+> Agora que as otimizações estão ativas, siga estes passos finais:
+> 1. Vá em **Build > Generate Signed Bundle / APK...**.
+> 2. Siga o fluxo que explicamos antes para gerar o arquivo `.aab`.
+> 3. **Teste Crítico**: Após gerar o bundle, instale a versão de release no seu celular e verifique se o Firebase Analytics e a navegação continuam funcionando perfeitamente. O R8 às vezes pode ser agressivo demais.
 
 ## Verificação Concluída
-
-- [x] O código foi modificado mantendo a persistência em `SharedPreferences`.
-- [x] A lógica garante que o modal não interrompa o usuário logo na abertura do app.
-- [x] O comportamento do botão "i" (balão informativo manual) permanece inalterado.
+- [x] O arquivo de build foi atualizado com sucesso.
+- [x] O arquivo de regras Proguard foi criado na raiz do módulo `app`.

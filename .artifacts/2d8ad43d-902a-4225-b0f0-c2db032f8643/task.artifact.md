@@ -1,3 +1,4 @@
-- [x] Atualizar a lógica de exibição do `AppInfoModal` na `HomeScreen.kt`
-- [x] Verificar se o estado do primeiro acesso é salvo corretamente
-- [x] Criar o resumo das alterações (walkthrough)
+- [x] Configurar minificação e limpeza de recursos no `app/build.gradle.kts`
+- [x] Criar arquivo de regras `app/proguard-rules.pro`
+- [x] Verificar a estrutura do projeto após as mudanças
+- [x] Criar walkthrough final
