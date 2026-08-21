@@ -1,0 +1,3 @@
+- [x] Atualizar a lógica de exibição do `AppInfoModal` na `HomeScreen.kt`
+- [x] Verificar se o estado do primeiro acesso é salvo corretamente
+- [x] Criar o resumo das alterações (walkthrough)

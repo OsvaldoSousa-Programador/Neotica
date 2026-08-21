@@ -41,6 +41,7 @@ import androidx.compose.material3.Text
 import com.jumirandapisousa.nohetica.app.ui.components.AppActionButton
 import com.jumirandapisousa.nohetica.app.ui.components.AppDashboardCard
 import com.jumirandapisousa.nohetica.app.ui.components.AppInfoBubble
+import com.jumirandapisousa.nohetica.app.ui.components.AppInfoModal
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,6 +52,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.logEvent
+import android.content.Context
+import androidx.core.content.edit
 
 import com.jumirandapisousa.nohetica.app.R
 import com.jumirandapisousa.nohetica.app.logic.gerarExpressaoNumerica
@@ -78,6 +81,7 @@ import com.jumirandapisousa.nohetica.app.ui.theme.ButtonOrangeStart
 import com.jumirandapisousa.nohetica.app.ui.theme.ButtonOrangeEnd
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.alpha
+import kotlinx.coroutines.delay
 
 
 
@@ -90,6 +94,12 @@ fun HomeScreen(
 ) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
+    
+    // Controle de Primeiro Acesso
+    val sharedPrefs = remember { context.getSharedPreferences("nohetica_prefs", Context.MODE_PRIVATE) }
+    var showWelcomeModal by remember { 
+        mutableStateOf(sharedPrefs.getBoolean("is_first_access", true)) 
+    }
 
     val analytics = remember {
         FirebaseAnalytics.getInstance(context)
@@ -548,6 +558,17 @@ fun HomeScreen(
                 }
             }
         )
+        
+        // Modal de Boas-Vindas (Overlay Centralizado)
+        // Aparece apenas no primeiro acesso ao app, quando a primeira expressão é gerada (Estado 2)
+        if (showWelcomeModal && expressaoGerada.isNotEmpty() && resolucaoTexto.isEmpty()) {
+            AppInfoModal(
+                onDismiss = {
+                    showWelcomeModal = false
+                    sharedPrefs.edit { putBoolean("is_first_access", false) }
+                }
+            )
+        }
     }
 }
 

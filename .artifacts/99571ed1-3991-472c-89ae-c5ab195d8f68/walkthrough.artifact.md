@@ -1,26 +1,31 @@
-# Walkthrough - Implementação de Dicas Educativas (Info Bubble)
+# Walkthrough - Modal Informativo de Primeiro Acesso
 
-Implementamos um sistema de ajuda contextual que fornece dicas ao aluno durante a prática de expressões numéricas, utilizando um design moderno com efeito de desfoque.
+Implementamos o `AppInfoModal`, um diálogo elegante e institucional que fornece orientações iniciais aos novos usuários do Nohética, aparecendo exclusivamente no primeiro acesso ao aplicativo.
 
 ## Alterações Realizadas
 
-### Sistema de Informação
-- **AppInfoBubble**: Criado um componente de balão de fala elegante com fundo azul suave e botão "Entendi!" em **NoeTeal**.
-- **AppCard Inteligente**: O card da expressão agora abriga um botão "i" (Informação) no canto superior direito.
-- **Efeito Visual**: Ao ativar a ajuda, o conteúdo da conta matemática abaixo do balão recebe um efeito de **Blur** (desfoque), destacando a mensagem de dica para o usuário.
+### Novo Componente: `AppInfoModal`
+- **Design de Precisão**: Criado com dimensões fixas de **253dp x 257dp**, seguindo rigorosamente os espaçamentos solicitados (25dp topo, 9dp base, 12dp entre elementos).
+- **Identidade Visual**: Inclui a logo do aplicativo centralizada, reforçando a marca desde o primeiro contato.
+- **Tipografia e Cores**:
+    - Texto informativo na cor grafite (**#282525**), tamanho 15sp e peso Médio.
+    - Botão "Entendi!" com fundo verde água (**#1CCEB4**) e texto grafite em negrito.
+- **Acabamento**: Fundo branco puro, cantos de 8dp e sombra azulada (**#529ABC**) para harmonia com o Dashboard.
 
-### Mensagens Contextuais
-As dicas mudam conforme o estado do aplicativo:
-- **Ao gerar a conta**: Lembra o aluno de que ele pode resolver primeiro no papel.
-- **Ao ver a resolução**: Explica a regra fundamental dos agrupadores (parênteses, colchetes e chaves).
+### Lógica de Persistência
+- **Inteligência de Acesso**: O aplicativo agora utiliza `SharedPreferences` para detectar se é a primeira vez que o usuário o abre.
+- **Ciclo de Vida**: Assim que o usuário clica em "Entendi!", o estado é salvo permanentemente no dispositivo, e o modal nunca mais será exibido em sessões futuras.
+
+### Experiência do Usuário (UX)
+- **Efeito de Foco**: Ao exibir o modal, todo o fundo (incluindo a barra superior e os cards) recebe um efeito de desfoque (**blur**), garantindo que o usuário leia a instrução antes de prosseguir.
 
 ## O que testar
 
-1.  **Acessar a Ajuda**: No estado de "Expressão Atual", toque no ícone "i". O texto da conta deve ficar embaçado e o balão com a dica deve aparecer.
-2.  **Fechar a Ajuda**: Toque no botão "Entendi!". O balão deve sumir e a conta deve voltar a ficar nítida.
-3.  **Verificar Regras**: Vá para a tela de resolução e clique no "i". Verifique se a mensagem sobre a ordem de resolução ( (), [], {} ) aparece corretamente.
+1.  **Primeiro Acesso**: Ao abrir o app pela primeira vez (ou limpar o cache), o modal deve aparecer centralizado com a logo e a dica sobre o caderno.
+2.  **Ação de Fechamento**: Clique em "Entendi!". O modal deve sumir e o desfoque deve desaparecer instantaneamente.
+3.  **Memória do App**: Feche o app completamente e abra-o de novo. O modal **não** deve mais aparecer.
 
 ---
 
 > [!TIP]
-> O uso do efeito Blur não apenas melhora a estética, mas também ajuda o cérebro do usuário a focar na informação nova (a dica), reduzindo a distração com a conta que está por baixo.
+> Essa abordagem de "Onboarding" (ambientação do usuário) é uma das melhores práticas para reduzir a taxa de abandono do app, pois explica claramente o propósito da ferramenta logo de cara.

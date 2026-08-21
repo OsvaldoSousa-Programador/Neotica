@@ -1,42 +1,50 @@
-# Plano de Implementação: Alinhamento Milimétrico do Sistema de Ajuda
+# Plano de Implementação: Modal Informativo de Boas-Vindas (Primeiro Acesso)
 
-Este plano visa ajustar o posicionamento do ícone informativo e do balão de dica (bubble) para que fiquem idênticos à imagem de referência, garantindo que a ponta do balão toque o ícone e que o conteúdo abaixo seja desfocado corretamente.
+Este plano visa a criação do `AppInfoModal`, um diálogo centralizado que será exibido apenas na primeira vez que o usuário abrir o aplicativo, fornecendo uma orientação inicial importante.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> O balão de ajuda será posicionado de forma que sua ponta superior direita toque a diagonal inferior esquerda do ícone "i". O quadro branco (Dashboard) será totalmente desfocado para dar ênfase à mensagem.
+> O modal será persistente: após o usuário clicar em "Entendi!", ele não voltará a aparecer em aberturas futuras do app. Usaremos `SharedPreferences` para salvar esse estado.
 
 ## Propostas de Mudança
 
-### [UI Components] Ajustes de Forma e Espaço
+### [UI Components] Componente de Modal
 
-#### [MODIFY] [AppCard.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppCard.kt)
-- Aumentar o `Spacer` no topo da expressão para **64.dp**. Isso garante que o texto da conta comece exatamente abaixo da área ocupada pelo ícone "i", evitando sobreposição.
+#### [NEW] `AppInfoModal.kt`
+- **Dimensões Físicas**: Largura 253dp, Altura 257dp.
+- **Visual**: Fundo branco, cantos 8dp, sombra `#529ABC`.
+- **Layout (Coluna)**:
+    - Padding topo: 25dp.
+    - Ícone Nohética (versão otimizada para o modal).
+    - Espaçamento: 12dp.
+    - Texto: "Você pode resolver com calma no seu caderno e só então tocar em Resolver Expressão".
+        - Tamanho: 15sp, Peso: Médio, Cor: `#282525`.
+    - Espaçamento: 12dp.
+    - Botão "Entendi!": Fundo `#1CCEB4`, Texto `#282525`.
+    - Padding base: 9dp.
+    - Margens laterais internas: 13dp.
 
-#### [MODIFY] [AppInfoBubble.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/components/AppInfoBubble.kt)
-- Garantir que a ponta aguda esteja no canto superior direito: `RoundedCornerShape(topStart = 24.dp, topEnd = 4.dp, bottomStart = 24.dp, bottomEnd = 24.dp)`.
-- Remover o `fillMaxWidth()` interno para que o balão possa ser posicionado com precisão via `offset` sem "empurrar" as bordas da tela.
+### [Logic] Controle de Primeiro Acesso
 
-### [UI/UX] Posicionamento na HomeScreen
+#### [MODIFY] [MainActivity.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/MainActivity.kt) ou `HomeScreen.kt`
+- Implementar a lógica de verificação:
+    - Verificar se a chave `is_first_access` existe no armazenamento local.
+    - Se for o primeiro acesso, disparar a exibição do modal.
+    - Ao clicar em "Entendi!", salvar `is_first_access = false`.
+
+### [UI/UX] Integração Visual
 
 #### [MODIFY] [HomeScreen.kt](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/src/main/java/com/jumirandapisousa/nohetica/app/ui/screens/HomeScreen.kt)
-- **Botão "i"**:
-    - Fundo: `#B0DAEE`.
-    - Texto "i": `#282525`, negrito.
-    - Posição: `top = 28.dp, end = 20.dp`.
-- **Balão (Bubble)**:
-    - Aplicar um `offset` calculado: `x = (-52).dp, y = 60.dp`.
-    - Isso fará com que a ponta do balão toque exatamente a diagonal do ícone, conforme a imagem.
-- **Desfoque**: Manter o desfoque de 12.dp em todo o `AppDashboardCard`.
+- Exibir o modal como um overlay centralizado com efeito de desfoque (blur) no Dashboard de fundo.
 
 ---
 
 ## Plano de Verificação
 
 ### Testes Manuais
-1.  **Fidelidade Visual**: Comparar o resultado final com a imagem fornecida, focando no ponto de contato entre o balão e o ícone.
-2.  **Legibilidade**: Confirmar que a conta matemática (mesmo desfocada) não está mais "por trás" do ícone "i".
-3.  **Interação**: Clicar em "Entendi!" e verificar se o desfoque global é removido instantaneamente.
+1.  **Primeiro Acesso**: Limpar os dados do app e abrir. O modal deve aparecer automaticamente.
+2.  **Persistência**: Clicar em "Entendi!", fechar o app e abrir novamente. O modal **não** deve aparecer.
+3.  **Design**: Validar se as dimensões (253x257) e cores (#282525 e #1CCEB4) estão idênticas ao pedido.
 
-**Osvaldo, esse ajuste milimétrico está de acordo? Posso aplicar agora?**
+**Osvaldo, o plano está atualizado com a cor do texto e a lógica de primeiro acesso. Posso começar a implementação?**

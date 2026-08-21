@@ -1,5 +1,4 @@
-- [ ] Redesenhar botão informativo no `AppCard.kt` e adicionar respiro no topo
-- [ ] Mover estado de ajuda para a `HomeScreen.kt`
-- [ ] Implementar desfoque total no Dashboard na `HomeScreen.kt`
-- [ ] Ajustar `AppInfoBubble.kt` para exibição centralizada
-- [ ] Testar visual e interatividade
+- [ ] Criar o componente `AppInfoModal.kt` com dimensões fixas (253x257) e estilo solicitado
+- [ ] Implementar a lógica de Primeiro Acesso usando `SharedPreferences`
+- [ ] Integrar o modal na `HomeScreen.kt` com efeito de blur no Dashboard
+- [ ] Validar visual e persistência (o modal deve sumir para sempre após o clique)
