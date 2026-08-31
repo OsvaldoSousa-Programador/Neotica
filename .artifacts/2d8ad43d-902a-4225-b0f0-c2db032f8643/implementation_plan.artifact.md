@@ -1,38 +1,30 @@
-# Criação de Nova Keystore e Ajuste de Versão
+# Atualização do Nível da API para Android 16 (API 36)
 
-Este plano visa resolver o bloqueio de senha criando uma nova chave de assinatura e sincronizando a versão do aplicativo com a sua documentação (`0.9.0`).
+Este plano visa cumprir a exigência do Google Play Console de 31 de agosto de 2026, atualizando o aplicativo para suportar o Android 16.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> **SEGURANÇA:** Ao criar a nova senha agora, por favor, anote-a imediatamente em um papel físico ou em um gerenciador de senhas seguro. Evite caracteres especiais muito complexos se o teclado costuma dar problema, mas mantenha a segurança.
+> **PRAZO:** Hoje é o prazo final (31 de agosto). Esta atualização é necessária para que você consiga subir novas versões do app ou finalizar o processo de revisão.
 >
-> **PRIMEIRO ENVIO:** Estamos procedendo assumindo que este é o **primeiro** envio do app para a Google Play Console.
+> **VERSIONAMENTO:** Além de mudar a API, vamos aumentar o `versionCode` de **1** para **2**. O Google Play não aceita dois arquivos com o mesmo número de versão.
 
 ## Proposed Changes
 
 ### Build Configuration
 
 #### [MODIFY] [build.gradle.kts](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/build.gradle.kts)
-Alterar a versão do aplicativo para refletir o estágio de pré-lançamento.
+Atualizar as configurações de SDK e o código da versão.
 
-- `versionName`: de `"1.0"` para `"0.9.0"`
-
-### Procedimento Manual (Guia para Juliana)
-
-Como eu não posso digitar as senhas por você na interface do Windows, siga estes passos exatos:
-
-1. **Abrir o Assistente:** `Build` > `Generate Signed Bundle / APK...` > `Android App Bundle` > `Next`.
-2. **Nova Chave:** Clique em **"Create new..."**.
-3. **Key Store Path:** Clique na pastinha e escolha um local (ex: sua pasta `keys` mencionada). Nomeie como `nohetica-final.jks`.
-4. **Password (Store):** Digite a nova senha (ex: uma frase simples sem espaços).
-5. **Alias:** Use `nohetica_app`.
-6. **Password (Key):** Use a **mesma senha** da Store para evitar confusão.
-7. **Certificate:** Preencha apenas seu nome. Clique em **OK**.
-8. **Finalizar:** Avance e escolha a variante `release`.
+- `compileSdk`: de **35** para **36**
+- `targetSdk`: de **35** para **36**
+- `versionCode`: de **1** para **2**
 
 ## Verification Plan
 
+### Automated Tests
+- Executar um `gradle sync` para garantir que as ferramentas do Android 16 (API 36) estão instaladas e o projeto compila sem erros.
+
 ### Manual Verification
-1. O Android Studio deve gerar o arquivo `.aab` sem erros de senha.
-2. Verificar se o arquivo `app-release.aab` foi criado na pasta `release`.
+1. Juliana deve gerar o novo arquivo **.aab** no Android Studio.
+2. Subir o novo arquivo no Console e verificar se o aviso vermelho desaparece.

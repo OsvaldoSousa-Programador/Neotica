@@ -1,30 +1,40 @@
-# Walkthrough - Preparação para Lançamento (Release)
+# Walkthrough - Atualização de API (Android 16)
 
-O projeto **ExpressoesNumericas** agora está configurado com as melhores práticas de otimização para a Google Play Store.
+O projeto **ExpressoesNumericas** foi atualizado para cumprir as novas exigências do Google Play Store vigentes a partir de 31 de agosto de 2026.
 
 ## Alterações Realizadas
 
 ### Configuração de Build
 
 #### [build.gradle.kts](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/build.gradle.kts)
-- **Minificação (R8)**: Ativado via `isMinifyEnabled = true`. Isso reduz o tamanho do código removendo o que não é usado e ofuscando o restante.
-- **Limpeza de Recursos**: Ativado via `isShrinkResources = true`. Remove arquivos de recursos (layouts, imagens) que não são referenciados no código.
-- **Vínculo com Proguard**: O arquivo `proguard-rules.pro` foi vinculado oficialmente ao build de release.
 
-### Segurança e Estabilidade
+- **API Level**: O nível de SDK foi elevado para **36** (Android 16), garantindo compatibilidade com as políticas de segurança mais recentes do Google.
+- **Versionamento**: O `versionCode` foi incrementado para **2**. Isso é obrigatório para que o Google Play aceite o novo arquivo como uma atualização do anterior.
 
-#### [proguard-rules.pro](file:///C:/Users/osval/AndroidStudioProjects/ExpressoesNumericas/app/proguard-rules.pro)
-- **Firebase**: Adicionada regra para garantir que as classes do Firebase não sejam removidas incorretamente pelo otimizador.
-- **Jetpack Compose**: Adicionada regra de preservação para membros de funções Composable.
+```diff
+ android {
+     namespace = "com.jumirandapisousa.nohetica.app"
+-    compileSdk = 35
++    compileSdk = 36
 
-## Próximos Passos para Você
+     defaultConfig {
+         applicationId = "com.jumirandapisousa.nohetica.app"
+         minSdk = 24
+-        targetSdk = 35
+-        versionCode = 1
++        targetSdk = 36
++        versionCode = 2
+         versionName = "0.9.0"
+```
+
+## Próximos Passos Obrigatórios
 
 > [!IMPORTANT]
-> Agora que as otimizações estão ativas, siga estes passos finais:
-> 1. Vá em **Build > Generate Signed Bundle / APK...**.
-> 2. Siga o fluxo que explicamos antes para gerar o arquivo `.aab`.
-> 3. **Teste Crítico**: Após gerar o bundle, instale a versão de release no seu celular e verifique se o Firebase Analytics e a navegação continuam funcionando perfeitamente. O R8 às vezes pode ser agressivo demais.
+> Para que o aviso suma do Console, você deve seguir estes passos:
+> 1. No Android Studio, vá em **Build > Generate Signed Bundle / APK...**.
+> 2. Gere o novo arquivo **.aab** (lembre-se de usar a mesma Keystore e senha da semana passada).
+> 3. Suba este novo arquivo no Google Play Console na mesma trilha de teste que estamos usando.
 
 ## Verificação Concluída
-- [x] O arquivo de build foi atualizado com sucesso.
-- [x] O arquivo de regras Proguard foi criado na raiz do módulo `app`.
+- [x] Arquivo de build atualizado e sincronizado.
+- [x] O `versionCode` foi alterado para permitir o novo upload.

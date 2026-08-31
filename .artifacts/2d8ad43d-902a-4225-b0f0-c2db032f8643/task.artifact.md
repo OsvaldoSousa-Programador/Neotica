@@ -1,4 +1,4 @@
-- [x] Configurar minificação e limpeza de recursos no `app/build.gradle.kts`
-- [x] Criar arquivo de regras `app/proguard-rules.pro`
-- [x] Verificar a estrutura do projeto após as mudanças
-- [x] Criar walkthrough final
+- [x] Atualizar `compileSdk` para 36 no `app/build.gradle.kts`
+- [x] Atualizar `targetSdk` para 36 no `app/build.gradle.kts`
+- [x] Incrementar `versionCode` para 2 no `app/build.gradle.kts`
+- [x] Criar walkthrough com o resumo das alterações
