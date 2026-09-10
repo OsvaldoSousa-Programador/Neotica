@@ -12,7 +12,7 @@ android {
         applicationId = "com.jumirandapisousa.nohetica.app"
         minSdk = 24
         targetSdk = 36
-        versionCode = 3
+        versionCode = 4
         versionName = "0.9.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
