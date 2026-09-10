@@ -13,7 +13,7 @@ android {
         minSdk = 24
         targetSdk = 36
         versionCode = 3
-        versionName = "1.0.0"
+        versionName = "0.9.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +22,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            ndk.debugSymbolLevel = "FULL"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
